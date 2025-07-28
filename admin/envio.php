@@ -1,4 +1,6 @@
 <?php
+ini_set('session.save_path', __DIR__.'/../sessions');
+
 session_start();
 
 if ((!isset($_SESSION['login']) == true) && (!isset($_SESSION['senha']) == true)) {
