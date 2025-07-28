@@ -12,6 +12,10 @@ if(md5($password) === $passwordCorreto && $email === $emailCorreto){
     $_SESSION['login'] = "logado";
     $_SESSION['senha'] = "logado";
 
-    header("Location: admin/envio");
+    $urlEnvio = "https://" . $_SERVER['HTTP_HOST'] . '/admin/envio';
+
+    header("Location: " . $urlEnvio);
+    exit();
+
 }
 ?>
