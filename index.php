@@ -7,7 +7,7 @@ switch ($requestUrl) {
         require __DIR__ . '/american/index.php';
 
     case 'admin/envio':
-        require __DIR__ . '/american/envio.php';
+        require __DIR__ . '/admin/envio.php';
 
     case 'admin/index':
         require __DIR__ . '/admin/index.php';
