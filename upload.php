@@ -9,5 +9,8 @@ if(!empty($_FILES['file']['name'][0])){
         move_uploaded_file($nomeTmp, $nomeFinal);
     }
     
-    header("Location: admin/envio");
+    $urlEnvio = "https://" . $_SERVER['HTTP_HOST'] . '/admin/envio.php';
+
+    header("Location: " . $urlEnvio);
+    exit();
 }

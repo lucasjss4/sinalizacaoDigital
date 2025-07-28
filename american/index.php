@@ -25,7 +25,7 @@ $quantidade = count($imagens);
 
 <script>
     const button = document.querySelector('button');
-    const container = document.querySelector('.container');
+    const container = document.querySelector('.containerPublic');
     const element = document.documentElement;
 
     button.addEventListener('click', () => {
