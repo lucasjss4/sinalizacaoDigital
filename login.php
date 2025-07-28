@@ -12,12 +12,12 @@ if(md5($password) === $passwordCorreto && $email === $emailCorreto){
     $_SESSION['logado'] = true;
     $_SESSION['usuario_email'] = $emailCorreto;
 
-    $urlEnvio = "https://" . $_SERVER['HTTP_HOST'] . '/admin/envio';
+    $urlEnvio = "https://" . $_SERVER['HTTP_HOST'] . '/admin/envio.php';
 
     header("Location: " . $urlEnvio);
     exit();
 }else{
-    $urlLoginComErro = "https://" . $_SERVER['HTTP_HOST'] . 'admin/index.php?erro=login';
+    $urlLoginComErro = "https://" . $_SERVER['HTTP_HOST'] . '/admin/index.php?erro=login';
 
     header('Location: ' . $urlLoginComErro);
     exit();
