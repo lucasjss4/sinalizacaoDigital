@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if ((!isset($_SESSION['login']) == true) && (!isset($_SESSION['senha']) == true)) {
+if (!isset($_SESSION['logado']) && $_SESSION['logado'] !== true) {
      $urlIndex = "https://" . $_SERVER['HTTP_HOST'] . '/admin/index';
 
     header("Location:" . $urlIndex);
