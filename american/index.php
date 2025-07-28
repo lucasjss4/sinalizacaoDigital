@@ -12,38 +12,15 @@ $quantidade = count($imagens);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        body {
-            margin: 0;
-            background-color: black;
-        }
-
-        .container {
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            display: none;
-        }
-
-        #imagem {
-            width: 700px;
-            height: 700px;
-            border: 1px solid white;
-        }
-    </style>
-
+    <title>Sinalização Digital</title>
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
 
-<body>
-    <div class="container">
+<body id="bodyPublic">
+    <div class="containerPublic">
         <img id="imagem" src="" alt="">
     </div>
-    <button>Entrar em tela Cheia</button>
+    <button id="entrarEmTelaCheia">Entrar em tela Cheia</button>
 </body>
 
 <script>
@@ -57,6 +34,13 @@ $quantidade = count($imagens);
 
         button.style.display = 'none';
         container.style.display = 'flex';
+    });
+
+    document.addEventListener('fullscreenchange', (event) => {
+        if (!document.fullscreenElement) {
+            button.style.display = 'flex';
+            container.style.display = 'none';
+        }
     });
 
     const imagens = <?php echo json_encode($imagens); ?>;

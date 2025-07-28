@@ -6,6 +6,12 @@ switch ($requestUrl) {
     case 'american/index':
         require __DIR__ . '/american/index.php';
 
+    case 'admin/envio':
+        require __DIR__ . '/american/envio.php';
+
     case 'admin/index':
         require __DIR__ . '/admin/index.php';
+
+    case 'admin/retirar':
+        require __DIR__ . '/admin/retirar.php';
 }

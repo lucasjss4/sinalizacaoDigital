@@ -1,8 +1,13 @@
 <?php
 
-if($_FILES['files']){
-    $nomeTmp = $_FILES['files']['tmp_name'];
-    $nomeFinal = 'assets/imagens/' . basename($_FILES['files']['name']);
-    move_uploaded_file($nomeTmp, $nomeFinal);
-    header("Location: admin/");
+if(!empty($_FILES['file']['name'][0])){
+    $qtdImagens = count($_FILES['file']['name']);
+    
+    for($i = 0; $i < $qtdImagens; $i++){
+        $nomeTmp = $_FILES['file']['tmp_name'][$i];
+        $nomeFinal = 'assets/imagens/' . basename($_FILES['file']['name'][$i]);
+        move_uploaded_file($nomeTmp, $nomeFinal);
+    }
+    
+    header("Location: admin/envio");
 }
