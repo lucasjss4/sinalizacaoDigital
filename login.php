@@ -1,6 +1,4 @@
 <?php
-ini_set('session.save_path', __DIR__.'/sessions');
-
 session_start();
 
 $email = $_POST['email'];
@@ -15,5 +13,5 @@ if(md5($password) === $passwordCorreto && $email === $emailCorreto){
     $_SESSION['senha'] = "logado";
 
     header("Location: admin/envio");
-    exit;
 }
+?>
