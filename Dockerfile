@@ -9,3 +9,5 @@ EXPOSE 10000
 
 # Comando para rodar o servidor PHP
 CMD ["php", "-S", "0.0.0.0:10000"]
+
+COPY ./php.ini /usr/local/etc/php/conf.d/custom.ini
