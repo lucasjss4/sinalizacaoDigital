@@ -90,7 +90,7 @@ $quantidade = count($imagens);
             let time = imagens[indice].split('+').pop();
             let DelayProgramado = time.split('.')[0];
 
-            if (DelayProgramado !== 0) {
+            if (Number(DelayProgramado) !== 0) {
                 setTimeout(mostrarImagem, DelayProgramado);
             } else {
                 setTimeout(mostrarImagem, delay);
