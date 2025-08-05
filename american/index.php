@@ -1,6 +1,6 @@
 <?php
 
-$imagens = glob('../assets/imagens/*.{jpg,jpeg,png}', GLOB_BRACE);
+$imagens = glob('../assets/imagens/*.{jpg,jpeg,png,mp4}', GLOB_BRACE);
 
 $quantidade = count($imagens);
 
@@ -49,10 +49,46 @@ $quantidade = count($imagens);
     const delay = 3000;
 
     const mostrarImagem = () => {
-        const img = document.getElementById('imagem');
-        img.src = imagens[indice];
-        indice = (indice + 1) % imagens.length;
-        setTimeout(mostrarImagem, delay);
+        let imageOrVideo = imagens[indice].split('.').pop();
+
+        const videoExistente = document.querySelector('video');
+        if (videoExistente) {
+            videoExistente.remove();
+        }
+
+        if (imageOrVideo === 'mp4') {
+            const img = document.getElementById('imagem');
+            img.style.display = 'none';
+            const video = document.createElement('video');
+            video.src = imagens[indice];
+            video.width = 700;
+            video.height = 500;
+            video.autoplay = true;
+            video.muted = true;
+            video.playsInline = true;
+
+            container.appendChild(video);
+            
+            video.onloadedmetadata = () => {
+                let duracao = video.duration * 1000;
+                indice = (indice + 1) % imagens.length;
+                setTimeout(mostrarImagem, duracao || delay);
+            }
+        } else {
+            const img = document.getElementById('imagem');
+            img.style.display = 'flex';
+            img.src = imagens[indice];
+            indice = (indice + 1) % imagens.length;
+            let time = imagens[indice].split('+').pop();
+            let DelayProgramado = time.split('.')[0];
+
+            if (DelayProgramado !== 0) {
+                setTimeout(mostrarImagem, DelayProgramado);
+            } else {
+                setTimeout(mostrarImagem, delay);
+            }
+        }
+
     }
 
     mostrarImagem();
