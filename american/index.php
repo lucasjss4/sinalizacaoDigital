@@ -69,10 +69,18 @@ $quantidade = count($imagens);
 
             container.appendChild(video);
             
-            video.onloadedmetadata = () => {
-                let duracao = video.duration * 1000;
+            video.onended = () => {
                 indice = (indice + 1) % imagens.length;
-                setTimeout(mostrarImagem, duracao || delay);
+                mostrarImagem();
+            }
+
+            video.onloadedmetadata = () => {
+                let duracao = video.duration;
+                setTimeout(() => {
+                    if(!video.paused) return;
+                    indice = (indice + 1) % imagens.length;
+                    mostrarImagem();
+                }, (isNaN(duracao) ? delay : duracao * 1000) + 200);
             }
         } else {
             const img = document.getElementById('imagem');
