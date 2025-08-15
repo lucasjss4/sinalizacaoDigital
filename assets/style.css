@@ -116,11 +116,11 @@
  }
 
  #imagem {
-     width: 700px;
-     height: 700px;
+     width: 1920px;
+     height: 1080px;
  }
 
- #entrarEmTelaCheia {
+ #entrarEmTelaCheia, #recarregar {
      font-size: 22px;
      border: 1px solid white;
      border-radius: 20px;

@@ -21,26 +21,34 @@ $quantidade = count($imagens);
         <img id="imagem" src="" alt="">
     </div>
     <button id="entrarEmTelaCheia">Entrar em tela Cheia</button>
+    <button id="recarregar">Recarregar a página</button>
 </body>
 
 <script>
-    const button = document.querySelector('button');
+    const btnEntrarTelaCheia = document.querySelector('#entrarEmTelaCheia');
+    const btnRecarregar = document.querySelector('#recarregar');
     const container = document.querySelector('.containerPublic');
     const element = document.documentElement;
 
-    button.addEventListener('click', () => {
+    btnEntrarTelaCheia.addEventListener('click', () => {
 
         element.requestFullscreen();
 
-        button.style.display = 'none';
+        btnEntrarTelaCheia.style.display = 'none';
+        btnRecarregar.style.display = 'none';
         container.style.display = 'flex';
     });
 
     document.addEventListener('fullscreenchange', (event) => {
         if (!document.fullscreenElement) {
-            button.style.display = 'flex';
+            btnEntrarTelaCheia.style.display = 'flex';
+            btnRecarregar.style.display = 'flex';
             container.style.display = 'none';
         }
+    });
+
+    btnRecarregar.addEventListener("click", (event) => {
+        window.location.reload();
     });
 
     const imagens = <?php echo json_encode($imagens); ?>;
@@ -68,7 +76,7 @@ $quantidade = count($imagens);
             video.playsInline = true;
 
             container.appendChild(video);
-            
+
             video.onended = () => {
                 indice = (indice + 1) % imagens.length;
                 mostrarImagem();
@@ -77,7 +85,7 @@ $quantidade = count($imagens);
             video.onloadedmetadata = () => {
                 let duracao = video.duration;
                 setTimeout(() => {
-                    if(!video.paused) return;
+                    if (!video.paused) return;
                     indice = (indice + 1) % imagens.length;
                     mostrarImagem();
                 }, (isNaN(duracao) ? delay : duracao * 1000) + 200);
