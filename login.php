@@ -4,8 +4,8 @@ session_start();
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$passwordCorreto = md5('#Camiseta123');
-$emailCorreto = 'Vinicius.jsantos@outlook.com';
+$passwordCorreto = md5($_ENV['password']);
+$emailCorreto = $_ENV['email'];
 
 if(md5($password) === $passwordCorreto && $email === $emailCorreto){
 
